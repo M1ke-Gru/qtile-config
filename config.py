@@ -279,8 +279,8 @@ for i in groups:
 def init_layout_theme():
     return {"margin":0,
             "border_width":2,
-            "border_focus": "#4444ff",
-            "border_normal": "#333333"
+            "border_focus": "#89b4fa",
+            "border_normal": "#1e1e2e"
             }
 
 layout_theme = init_layout_theme()
@@ -333,35 +333,20 @@ keys.extend(
 # COLORS FOR THE BAR
 
 def init_colors():
-    return [["#2F343F", "#2F343F"], # color 0
-            ["#2F343F", "#2F343F"], # color 1
-            ["#c0c5ce", "#c0c5ce"], # color 2
-            ["#ff2222", "#ff2222"], # color 3
-            ["#f4c2c2", "#f4c2c2"], # color 4
-            ["#ffffff", "#ffffff"], # color libqtile.widget.Battery(*args, **kwargs)5
-            ["#ffd47e", "#ffd47e"], # color 6
-            ["#62FF00", "#62FF00"], # color 7
-            ["#333333", "#333333"], # color 8
-            ["#000044", "#000044"], # color 9
-            ["#22aa22", "#22aa22"], # color 10
-            ["#ff00ff", "#ff00ff"], #11
-            ["#4c566a", "#4c566a"], #12
-            ["#282c34", "#282c34"], #13
-            ["#212121", "#212121"], #14
-            ["#111111", "#111111"], #15
-            ["#2aa899", "#2aa899"], #16
-            ["#abb2bf", "#abb2bf"],# color 17
-            ["#81a1c1", "#81a1c1"], #18
-            ["#56b6c2", "#56b6c2"], #19
-            ["#888888", "#888888"], #20
-            ["#e06c75", "#e06c75"], #21
-            ["#ff79c6", "#ff79c6"], #22
-            ["#ffd86c", "#ffd86c"]] #23
+    return [
+        #Catpuchinn colors are used
+        ["#11111b", "#11111b"], #almost black
+        ["#7777aa", "#7777aa"],
+        ["#cdd6f4", "#cdd6f4"],
+        ["ffff00", "ffff00"], 
+        ["89b4fa", "89b4fa"], #blue
+        ["#313244", "#313244"], #some dark color
+    ]
 
 colors = init_colors()
 
 def base(fg='text', bg='dark'):
-    return {'foreground': colors[14],'background': colors[15]}
+    return {'foreground': colors[2],'background': colors[0]}
 
 
 # WIDGETS FOR THE BAR
@@ -370,7 +355,7 @@ def init_widgets_defaults():
     return dict(font="Noto Sans",
                 fontsize = 9,
                 padding = 2,
-                background=colors[1])
+                background=colors[0])
 
 widget_defaults = init_widgets_defaults()
 
@@ -381,18 +366,17 @@ def init_widgets_list():
                  widget.Sep(
                         linewidth = 1,
                         padding = 10,
-                        foreground = colors[15],
-                        background = colors[15]
+                        foreground = colors[0],
+                        background = colors[0]
                         ),
                widget.Image(
                        filename = "~/.config/qtile/icons/garuda-red.png",
                        iconsize = 9,
-                       background = colors[15],
                        mouse_callbacks = {'Button1': lambda : qtile.cmd_spawn('jgmenu_run')}
                        ),
                widget.GroupBox(
 
-            **base(bg=colors[15]),
+            **base(bg=colors[0]),
             font='UbuntuMono Nerd Font',
 
                     fontsize = 15,
@@ -402,17 +386,14 @@ def init_widgets_list():
                     padding_x = 4,
                     borderwidth = 3,
 
-            active=colors[5],
-            inactive=colors[6],
-            rounded= True,
+            active=colors[2],
+            inactive=colors[4],
             highlight_method='block',
+            this_current_screen_border='313244',
+            this_screen_border='313244',
             urgent_alert_method='block',
-            urgent_border=colors[16],
-            this_current_screen_border=colors[8],
-            this_screen_border=colors[17],
-            other_current_screen_border=colors[13],
-            other_screen_border=colors[17],
-            disable_drag=True
+            disable_drag=True,
+            rounded=True,
 
 
                    
@@ -426,35 +407,52 @@ def init_widgets_list():
                     padding_y=0,
                     margin_y=0,
                     fontsize=17,
-                    border=colors[8],
-                    foreground=colors[5],
                     margin=2,
                     txt_floating='🗗',
                     txt_minimized='>_ ',
                     borderwidth = 1,
-                    background=colors[15],
+                    border=colors[5],
+            #background=colors[0],
                     #unfocused_border = 'border'
                 ),
 
                widget.CurrentLayoutIcon(
                        custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
-                       foreground = colors[5],
-                       background = colors[3],
+                       background = colors[0],
                        padding = 0,
                        scale = 0.7
                        ),
-
+                widget.Sep(
+                        linewidth = 2,
+                        padding = 10,
+                        foreground = colors[1],
+                        background = colors[0]
+                        ),
                 widget.KeyboardLayout(
                     padding=4,
                     configured_keyboards=['us intl', 'ua'],
                     fontsize=16,
+                    background=colors[0],
                 ),
+                widget.Sep(
+                        linewidth = 2,
+                        padding = 10,
+                        foreground = colors[1],
+                        background = colors[0]
+                        ),
+
                 
                 widget.Battery(
                     padding = 4,
                     fontsize=16,
-                    background="#4444cc",
+                    background=colors[0],
                 ),
+                widget.Sep(
+                        linewidth = 2,
+                        padding = 10,
+                        foreground = colors[1],
+                        background = colors[0]
+                        ),
 
 #                widget.CPU(
 #                        font="Noto Sans",
@@ -479,17 +477,21 @@ def init_widgets_list():
 
 
 
-               widget.Systray(
-                       background=colors[10],
+                widget.Systray(
+                       background=colors[0],
                        icon_size=20,
                        padding = 4,
                        ),
+                widget.Sep(
+                        linewidth = 2,
+                        padding = 10,
+                        foreground = colors[1],
+                        background = colors[0],
+                        ),
 
-               widget.Clock(
+                widget.Clock(
                         padding=4,
-                        foreground = "#ffffff",
-                        background = "#333333",
-                        fontsize = 16,
+                        fontsize = 18,
                         rounded=True,
                         format="%H:%M"
                         ),
