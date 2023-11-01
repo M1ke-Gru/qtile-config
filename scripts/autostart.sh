@@ -1,13 +1,10 @@
 #!/bin/bash
 
 function run {
-  if ! pgrep $1 ;
-  then
-    $@&
-  fi
+	if ! pgrep $1; then
+		$@ &
+	fi
 }
-
-
 
 #starting utility applications at boot time
 lxsession &
@@ -21,7 +18,7 @@ picom --config .config/picom/picom.conf --experimental-backends &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
 # feh --randomize --bg-fill /usr/share/wallpapers/garuda-wallpapers/*
-feh --bg-fill /usr/share/wallpapers/garuda-wallpapers/qtile.jpg
+feh --bg-fill ~/Bilder/nord-theme-city-lights-building-night-street-light-hd-wallpaper-preview.jpg
 #starting user applications at boot time
 run volumeicon &
 #run discord &
