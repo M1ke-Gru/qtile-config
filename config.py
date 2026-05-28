@@ -52,7 +52,7 @@ from libqtile.config import (
     ScratchPad,
     DropDown,
 )
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 
 
 # mod4 or mod = super key
@@ -460,7 +460,7 @@ def init_widgets_list():
             # background=colors[0],
             # unfocused_border = 'border'
         ),
-        widget.CurrentLayoutIcon(
+        widget.CurrentLayout(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
             background=colors[0],
             padding=5,
@@ -565,7 +565,7 @@ mouse = [
 ]
 
 dgroups_key_binder = None
-dgroups_app_rules = []
+dgroups_app_rules: list[Rule] = []
 
 # ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
 # BEGIN
